@@ -27,6 +27,7 @@ import (
 	wgin "github.com/shiningrush/droplet/wrapper/gin"
 
 	"github.com/apisix/manager-api/internal/conf"
+	"github.com/apisix/manager-api/internal/log"
 	"github.com/apisix/manager-api/internal/handler"
 	"github.com/apisix/manager-api/internal/utils/consts"
 )
@@ -100,6 +101,8 @@ func (h *Handler) userLogin(c droplet.Context) (interface{}, error) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedToken, _ := token.SignedString([]byte(conf.AuthConf.Secret))
+	log.Warn(conf.AuthConf.Secret)
+    log.Warn([]byte(conf.AuthConf.Secret))
 
 	// output token
 	return &UserSession{
