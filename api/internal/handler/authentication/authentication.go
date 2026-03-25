@@ -102,7 +102,6 @@ func (h *Handler) userLogin(c droplet.Context) (interface{}, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedToken, _ := token.SignedString([]byte(conf.AuthConf.Secret))
 	log.Warn(conf.AuthConf.Secret)
-    log.Warn([]byte(conf.AuthConf.Secret))
 
 	// output token
 	return &UserSession{
